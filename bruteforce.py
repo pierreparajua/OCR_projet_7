@@ -75,4 +75,3 @@ if __name__ == "__main__":
         print(action)
     print(f"Total cost: {best_combinaison[1]}")
     print(f"Total return: {best_combinaison[2]}")
-    print("ok")
