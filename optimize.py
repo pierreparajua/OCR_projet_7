@@ -17,13 +17,12 @@ class Action:
     price: float
     profit: float
 
-    def buy(self, quantity: int) -> float:
+    def buy(self) -> float:
         """
         Compute the gain for the purchase according to number of action
-        :param  quantity:Nbr of action to buy
         :return: gain for the purchase
         """
-        return self.price * quantity * self.profit
+        return self.price * self.profit
 
 
 def load_data(csv_file: Path) -> list[Action]:
@@ -58,12 +57,12 @@ def force_brute(datas):
                 total_cost = 0
                 total_return = 0
                 for i in range(nbr_action_bought):
-                    profit_by_action = combinaison[i].buy(1)
+                    profit_by_action = combinaison[i].buy()
                     combinaisons.append(combinaison[i].name)
                     total_return += profit_by_action
                     total_cost += combinaison[i].price
                 if total_cost <= 500:
-                    all_combinaisons.append([combinaisons, total_cost, round(total_return, 2)])
+                    all_combinaisons.append([combinaisons, total_cost, total_return])
     return sorted(all_combinaisons, key=operator.itemgetter(2), reverse=True)
 
 
@@ -75,4 +74,3 @@ if __name__ == "__main__":
         print(action)
     print(f"Total cost: {best_combinaison[1]}")
     print(f"Total return: {best_combinaison[2]}")
-
