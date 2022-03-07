@@ -9,7 +9,7 @@ bin-release/
 env
 __pycache__
 .idea
-brute2.py
+optimized.py
 
 
 # Executables
