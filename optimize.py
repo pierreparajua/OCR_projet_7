@@ -10,7 +10,6 @@ DATA_DIR = Path(__file__).resolve().parent / "data"
 DATA_BRUTE = DATA_DIR / "data_brute.csv"
 DATASET1 = DATA_DIR / "dataset1_Python+P7.csv"
 DATASET2 = DATA_DIR / "dataset2_Python+P7.csv"
-test = DATA_DIR / "test.csv"
 MAX_MONEY = 500
 
 
