@@ -9,6 +9,8 @@ DATA_DIR = Path(__file__).resolve().parent / "data"
 DATA_BRUTE = DATA_DIR / "data_brute.csv"
 DATASET1 = DATA_DIR / "dataset1_Python+P7.csv"
 DATASET2 = DATA_DIR / "dataset2_Python+P7.csv"
+test = DATA_DIR / "test.csv"
+MAX_MONEY = 15
 
 
 @dataclass
@@ -61,14 +63,14 @@ def force_brute(datas):
                     combinaisons.append(combinaison[i].name)
                     total_return += profit_by_action
                     total_cost += combinaison[i].price
-                if total_cost <= 500:
+                if total_cost <= MAX_MONEY:
                     all_combinaisons.append([combinaisons, total_cost, total_return])
     return sorted(all_combinaisons, key=operator.itemgetter(2), reverse=True)
 
 
 if __name__ == "__main__":
     print("Work in progress ...")
-    best_combinaison = force_brute(load_data(DATA_BRUTE))[0]
+    best_combinaison = force_brute(load_data(test))[0]
     print("\nRESULTS: ")
     for action in best_combinaison[0]:
         print(action)
