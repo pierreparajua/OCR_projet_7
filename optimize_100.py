@@ -78,8 +78,8 @@ def display_result(best_actions: list):
         print(action.name)
         tot += action.price / 100
         tot_return += action.gain / 1000000
-    print(tot)
-    print(round(tot_return, 2))
+    print(f"Total cost: {tot}")
+    print(f"Total return: {round(tot_return, 2)}")
 
 
 def main(csv_file):
@@ -89,7 +89,7 @@ def main(csv_file):
 
 if __name__ == "__main__":
     start = time.perf_counter()
-    main(DATASET2)
+    main(DATASET1)
     end = time.perf_counter()
     elapsed = end - start
     print(f'Temps d\'exécution : {elapsed}s')

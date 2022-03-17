@@ -5,7 +5,6 @@ import time
 from dataclasses import dataclass
 from pathlib import Path
 
-
 DATA_DIR = Path(__file__).resolve().parent / "data"
 
 DATA_BRUTE = DATA_DIR / "data_brute.csv"
@@ -36,7 +35,7 @@ def load_data(csv_file: str) -> list:
     df.drop(df[df['price'] <= 0].index, inplace=True)  # supprime les valeurs < 0
     df.drop(df[df['profit'] <= 0].index, inplace=True)
     round(df['price'], 1)
-    df['price'] = (df['price'] * 10).map(int)
+    df['price'] = (round(df['price'], 1) * 10).map(int)
     df['gain'] = df['price'] * (round(df['profit'], 1) * 10).map(int)
     actions = [Action(name=action[0], price=action[1], profit=action[2],
                       gain=action[3]) for action in df.values]  # Crée une liste d ' objet Action
@@ -79,11 +78,12 @@ def display_result(best_actions: list):
         print(action.name)
         tot += action.price / 10
         tot_return += action.gain / 10000
-    print(tot)
-    print(round(tot_return, 2))
+    print(f"Total cost: {tot}")
+    print(f"Total return: {round(tot_return, 2)}")
 
 
 def main(csv_file):
+    x = 0.07
     result = algo_optimize(load_data(csv_file))
     display_result(result)
 

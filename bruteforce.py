@@ -1,10 +1,12 @@
 import pandas as pd
+from memory_profiler import profile
 
 import time
 import itertools
 import operator
 from dataclasses import dataclass
 from pathlib import Path
+
 
 DATA_DIR = Path(__file__).resolve().parent / "data"
 
@@ -41,6 +43,7 @@ def load_data(csv_file: str) -> list:
     return actions
 
 
+@profile
 def force_brute(datas: list) -> list:
     """
     Compute all combinations, add each combinations to the list "all_combinations" if the total cost <= MAX_MONEY,
@@ -50,7 +53,6 @@ def force_brute(datas: list) -> list:
     """
     all_combinations = []
     for nbr_action in range(0, len(datas) + 1):
-        print(nbr_action)
         for combination in itertools.combinations(datas, nbr_action):
             nbr_action_bought = len(combination)
             if nbr_action_bought != 0:
@@ -83,7 +85,7 @@ def main(csv_file):
 
 if __name__ == "__main__":
     start = time.perf_counter()
-    main(DATASET2)
+    main(DATA_BRUTE)
     end = time.perf_counter()
     elapsed = end - start
     print(f'Temps d\'exécution : {elapsed}s')
